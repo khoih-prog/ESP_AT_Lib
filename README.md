@@ -8,7 +8,7 @@
 
 An ESP8266/ESP32 wrapper library for Arduino providing an easy-to-use way to manipulate ESP8266/ESP32-AT shields.
 
-This library is based on, modified and improved from [TEADLIB_Arduino_WeeESP8266](https://github.com/itead/ITEADLIB_Arduino_WeeESP8266)
+This library is based on, modified and improved from [ITEADLIB_Arduino_WeeESP8266](https://github.com/itead/ITEADLIB_Arduino_WeeESP8266)
 
 ---
 
@@ -22,7 +22,7 @@ This library is based on, modified and improved from [TEADLIB_Arduino_WeeESP8266
 
 ---
 
-## Prerequisite
+### Prerequisite
  1. [`Arduino IDE 1.8.12 or later` for Arduino](https://www.arduino.cc/en/Main/Software)
  2. [`Adafruit nRF52 v0.20.1 or later`](www.adafruit.com) for nRF52 boards such as Adafruit NRF52840_FEATHER, NRF52832_FEATHER, NRF52840_FEATHER_SENSE, NRF52840_ITSYBITSY, NRF52840_CIRCUITPLAY, NRF52840_CLUE, NRF52840_METRO, NRF52840_PCA10056, PARTICLE_XENON, ***NINA_B302_ublox, NINA_B112_ublox***, etc.
  3. [`Arduino Core for STM32 v1.8.0 or later`](https://github.com/khoih-prog/Arduino_Core_STM32) for STM32 boards
@@ -92,13 +92,6 @@ Another way to install is to:
 4. Copy whole `ESP_AT_Lib-master/src` folder to Arduino libraries' directory such as `~/Arduino/libraries/`.
 
 ---
-
-### Documentation
-
-Online API documentation can be reached at <http://docs.iteadstudio.com/ITEADLIB_Arduino_WeeESP8266/index.html>.
-
-Offline API documentation can be found under directory 
-[doc](https://github.com/itead/ITEADLIB_Arduino_WeeESP8266/tree/master/doc).
 
 ### How to get started
 
@@ -182,27 +175,22 @@ will be useful for Arduino lovers.
     uint32_t 	recv (uint8_t *coming_mux_id, uint8_t *buffer, uint32_t buffer_size, uint32_t timeout=1000) : Receive data from all of TCP or UDP builded already in multiple mode. 
 ```
 
-### Mainboard Requires
-
-  - RAM: not less than 2KBytes
-  - Serial: one serial (HardwareSerial or SoftwareSerial) at least 
-
 ### Suppported Mainboards
   
-  - Arduino MEGA and its derivatives
+  - Arduino MEGA
   - SAM DUE
-  - Arduino SAMD21
-  - Adafruit SAMD21 and SAMD51
+  - ***Arduino SAMD21 (ZERO, MKR, NANO_33_IOT, M0, M0 Pro, AdaFruit CIRCUITPLAYGROUND_EXPRESS, etc.)***
+  - ***Adafruit SAMD21/SAM51 (Itsy-Bitsy M0/M4, Metro M0/M4, Grand Central M4, Feather M0/M4 Express, etc.)***
   - Teensy
-  - nRF52
-  - STM32F
+  - ***nRF52 (AdaFruit Feather nRF52832, nRF52840 Express, BlueFruit Sense, Itsy-Bitsy nRF52840 Express, Metro nRF52840 Express, NINA_B30_ublox, NINA_B112_ublox, etc.)***
+  - ***STM32F (STM32F1, F2, F3, F4, F7, etc.)***
 
 
 ### Hardware Connection
 
 ESP_AT_Lib library only needs an UART for hardware connection. All communications are done via UART. In each example, you must specify the UART used by mainboard to communicate with ESP8266/ESP32-AT firmware.
 
-### MEGA, SAM DUE
+#### MEGA, SAM DUE
 
 For MEGA and SAM DUE, `Serial1` or `Serial3` will be used if you create an object (named wifi)  of class ESP8266 in your code like this:
 
@@ -219,9 +207,9 @@ The connection should be like these:
   
 ### Attention
 
-The size of data from ESP8266/ESP32-AT is too big for arduino sometimes, so the library can't receive the whole buffer because the size of the hardware serial buffer which is defined in HardwareSerial.h is too small.
+The size of data from ESP8266/ESP32-AT is sometimes too big for Arduino boards, so the library can't receive the whole buffer because the size of the hardware serial buffer, defined in HardwareSerial.h, is too small.
 
-The `SERIAL_TX_BUFFER_SIZE` and `SERIAL_RX_BUFFER_SIZE` are already redefined to 256 for Mega, and 2-48 for other boards
+The `SERIAL_TX_BUFFER_SIZE` and `SERIAL_RX_BUFFER_SIZE` are already redefined to 256 for Mega, and 2048 for other boards
 
 ```cpp
 #if ( defined(ARDUINO_AVR_ADK) || defined(ARDUINO_AVR_MEGA) || defined(ARDUINO_AVR_MEGA2560) )
@@ -599,11 +587,11 @@ void loop(void)
 
 ---
 
-## TO DO
+### TO DO
 
 1. Fix bugs
 
-## DONE
+### DONE
 
  1. Add ESP32-AT support
  2. Replace deprecated AT commands
