@@ -23,24 +23,52 @@ This library is based on, modified and improved from [ITEADLIB_Arduino_WeeESP826
 ---
 
 ### Prerequisite
- 1. [`Arduino IDE 1.8.12 or later` for Arduino](https://www.arduino.cc/en/Main/Software)
- 2. [`Adafruit nRF52 v0.20.1 or later`](www.adafruit.com) for nRF52 boards such as Adafruit NRF52840_FEATHER, NRF52832_FEATHER, NRF52840_FEATHER_SENSE, NRF52840_ITSYBITSY, NRF52840_CIRCUITPLAY, NRF52840_CLUE, NRF52840_METRO, NRF52840_PCA10056, PARTICLE_XENON, ***NINA_B302_ublox, NINA_B112_ublox***, etc.
- 3. [`Arduino Core for STM32 v1.8.0 or later`](https://github.com/khoih-prog/Arduino_Core_STM32) for STM32 boards
- 4. [`Arduino SAM DUE core 1.6.12 or later`](https://www.arduino.cc/en/Guide/ArduinoDue) for SAM DUE ARM Cortex-M3 boards
- 5. [`Arduino SAMD core 1.8.5 or later`](https://www.arduino.cc/en/Guide/ArduinoM0) for SAMD ARM Cortex-M0+ boards
- 6. [`Adafruit SAMD core 1.5.11 or later`](https://www.adafruit.com/) for SAMD ARM Cortex-M0+ and M4 boards (Nano 33 IoT, etc.)
- 7. [`Ai-Thinker AT Firmware v1.5.4`](AT_Firmwares/At_firmware_bin1.54.zip) or [`AT Firmware v1.7.4.0`](AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip) for ESP8266-AT shields.
- 8. [`AT version_2.1.0.0_dev`](AT_Firmwares/AT_version_2.1.0.0_dev.zip) for ESP32-AT shields.
+ 1. [`Arduino IDE 1.8.12+` for Arduino](https://www.arduino.cc/en/Main/Software)
+ 2. `Arduino AVR core 1.8.2+` for Arduino (Use Arduino Board Manager) for AVR boards
+ 3. [`Arduino Core for STM32 v1.9.0+`](https://github.com/khoih-prog/Arduino_Core_STM32) for STM32 boards (Nucleo-144 NUCLEO_F767ZI, Nucleo-64 NUCLEO_L053R8, etc.)
+ 4. [`Teensy core 1.53+`](https://www.pjrc.com/teensy/td_download.html) for Teensy (4.1, 4.0, 3.6, 3.5, 3,2, 3.1, 3.0, LC) boards
+ 5. [`Arduino SAM DUE core 1.6.12+`](https://www.arduino.cc/en/Guide/ArduinoDue) for SAM DUE ARM Cortex-M3 boards
+ 6. [`Arduino SAMD core 1.8.8+`](https://www.arduino.cc/en/Guide/ArduinoM0) for SAMD ARM Cortex-M0+ boards  (Nano 33 IoT, etc.).
+ 7. [`Adafruit SAMD core 1.6.0+`](https://www.adafruit.com/)  for SAMD ARM Cortex-M0+ and M4 boards (Itsy-Bitsy M4, etc.)
+ 8. [`Adafruit nRF52 v0.20.5+`](www.adafruit.com) for nRF52 boards such as AdaFruit Feather nRF52840 Express, NINA_B302_ublox, NINA_B112_ublox, etc.
+ 9. [`Seeeduino SAMD core 1.7.8+`](https://www.seeedstudio.com/) for SAMD21/SAMD51 boards (XIAO M0, Wio Terminal, etc.) 
+10. [`Ai-Thinker AT Firmware v1.5.4`](AT_Firmwares/At_firmware_bin1.54.zip) or [`AT Firmware v1.7.4.0`](AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip) for ESP8266-AT shields.
+11. [`AT version_2.1.0.0_dev`](AT_Firmwares/AT_version_2.1.0.0_dev.zip) for ESP32-AT shields.
+12. `AT version_1.1.4` for WIS600-01S and W600-AT WiFi shields.
 
-### Important Notes
+---
+
+### Important Notes about AT Firmwares
 
 1. Tested OK with for ESP8266-AT shields:
-  - [`Ai-Thinker AT Firmware v1.5.4`](AT_Firmwares/At_firmware_bin1.54.zip)
-  - [`AT Firmware v1.7.4.0`](AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip) 
+  - [`Ai-Thinker AT Firmware v1.5.4`](https://github.com/khoih-prog/ESP8266_AT_WebServer/blob/master/AT_Firmwares/At_firmware_bin1.54.zip)
+  
+    ```
+    AT version:1.1.0.0(May 11 2016 18:09:56)
+    SDK version:1.5.4(baaeaebb)
+    Ai-Thinker Technology Co. Ltd.
+    Jun 13 2016 11:29:20
+    ```
+  - [`AT Firmware v1.7.4.0`](https://github.com/khoih-prog/ESP8266_AT_WebServer/blob/master/AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip)
+  
+    ```
+    AT version:1.7.4.0(May 11 2020 19:13:04)
+    SDK version:3.0.4(9532ceb)
+    compile time:May 27 2020 10:12:17
+    Bin version(Wroom 02):1.7.4
+    ```
+    
+  - [`WIS600-01S`](https://www.aliexpress.com/item/32956707239.html) and [`W600`](https://www.seeedstudio.com/w600.html) using either ESP8266 or ESP32-AT commands and stock firmware
+  
+    ```
+    AT version:1.1.4(Dec 05 2018 11:06:45)
+    SDK version:3.0.0
+    Dec 05 2018 11:06:45
+    ```
   
   
 2. Tested OK with for ESP32-AT shields:
-  - [`AT version_2.1.0.0_dev`](AT_Firmwares/AT_version_2.1.0.0_dev.zip)
+  - [`AT version_2.1.0.0_dev`](https://github.com/khoih-prog/ESP8266_AT_WebServer/blob/master/AT_Firmwares/AT_version_2.1.0.0_dev.zip)
     
     ```
     AT version:2.1.0.0-dev(4f6b92c - Jun 10 2020 10:36:54)
@@ -51,7 +79,7 @@ This library is based on, modified and improved from [ITEADLIB_Arduino_WeeESP826
     
     See instructions at [AT Command Core](https://github.com/espressif/esp-at) and [ESP_AT_Get_Started](https://github.com/espressif/esp-at/blob/master/docs/en/get-started/ESP_AT_Get_Started.md)
   
-3. Upload [`AT Firmware v1.7.4.0`](AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip) bin files to correct locations as follows:
+3. Upload [`AT Firmware v1.7.4.0`](https://github.com/khoih-prog/ESP8266_AT_WebServer/blob/master/AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip) bin files to correct locations as follows:
 
 ```
 # BOOT MODE
@@ -70,9 +98,10 @@ This library is based on, modified and improved from [ITEADLIB_Arduino_WeeESP826
     blank.bin                   0xfe000 & 0x1fe000
 ```
 
-3. Test before using different AT-Firmware Version at your own risks. Just use any simple Blynk sketch to verify if the AT-firmware is OK.
-4. Compatible AT-Firmare version will be updated. Check for and download Firmwares from [AT_Firmwares](AT_Firmwares) all supported AT Firmwares.
-5. Using this library [ESP_AT_Lib](https://github.com/khoih-prog/ESP_AT_Lib) to replace [Blynk's BlynkESP8266_Lib](https://github.com/blynkkk/blynk-library/releases/Blynk_Release_v0.6.1.zip) to support ESP32-AT as well as ESP8266-AT shields to access Blynk Services.
+4. Test before using different AT-Firmware Version at your own risks. Just use any simple example to verify if the AT-firmware is OK.
+5. Compatible AT-Firmare version will be updated. Check for all supported AT Firmwares and download them from [AT_Firmwares](https://github.com/khoih-prog/ESP8266_AT_WebServer/tree/master/AT_Firmwares).
+6. Support to ESP32-AT-command shields has been added to permit using new library [ESP_AT_Lib](https://github.com/khoih-prog/ESP_AT_Lib) to replace [Blynk's BlynkESP8266_Lib](https://github.com/blynkkk/blynk-library/releases/Blynk_Release_v0.6.1.zip). The same [ESP_AT_Lib](https://github.com/khoih-prog/ESP_AT_Lib) can also be use for ESP8266-AT shields.
+
 
 ---
 
@@ -90,6 +119,117 @@ Another way to install is to:
 2. Download the latest release `ESP_AT_Lib-master.zip`.
 3. Extract the zip file to `ESP_AT_Lib-master` directory 
 4. Copy whole `ESP_AT_Lib-master/src` folder to Arduino libraries' directory such as `~/Arduino/libraries/`.
+
+### VS Code & PlatformIO:
+1. Install [VS Code](https://code.visualstudio.com/)
+2. Install [PlatformIO](https://platformio.org/platformio-ide)
+3. Install **ESP8266_AT_WebServer** library by using [Library Manager](https://docs.platformio.org/en/latest/librarymanager/). Search for ***ESP8266_AT_WebServer*** in [Platform.io Author's Libraries](https://platformio.org/lib/search?query=author:%22Khoi%20Hoang%22)
+4. Use included [platformio.ini](platformio/platformio.ini) file from examples to ensure that all dependent libraries will installed automatically. Please visit documentation for the other options and examples at [Project Configuration File](https://docs.platformio.org/page/projectconf.html)
+
+---
+
+### Packages' Patches
+
+ 1. ***To be able to compile, run and automatically detect and display BOARD_NAME on nRF52840/nRF52832 boards***, you have to copy the whole [nRF52 0.20.5](Packages_Patches/adafruit/hardware/nrf52/0.20.5) directory into Adafruit nRF52 directory (~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5). 
+
+Supposing the Adafruit nRF52 version is 0.20.5. These files must be copied into the directory:
+- `~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/platform.txt`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/boards.txt`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/variants/NINA_B302_ublox/variant.h`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/variants/NINA_B302_ublox/variant.cpp`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/variants/NINA_B112_ublox/variant.h`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/variants/NINA_B112_ublox/variant.cpp`
+- ***`~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/cores/nRF5/Udp.h`***
+
+Whenever a new version is installed, remember to copy these files into the new version directory. For example, new version is x.yy.z
+These files must be copied into the directory:
+
+- `~/.arduino15/packages/adafruit/hardware/nrf52/x.yy.z/platform.txt`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/x.yy.z/boards.txt`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/x.yy.z/variants/NINA_B302_ublox/variant.h`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/x.yy.z/variants/NINA_B302_ublox/variant.cpp`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/x.yy.z/variants/NINA_B112_ublox/variant.h`
+- `~/.arduino15/packages/adafruit/hardware/nrf52/x.yy.z/variants/NINA_B112_ublox/variant.cpp`
+- ***`~/.arduino15/packages/adafruit/hardware/nrf52/x.yy.z/cores/nRF5/Udp.h`***
+
+ 2. ***To be able to compile and run on Teensy boards***, you have to copy the file [Teensy boards.txt](Packages_Patches/hardware/teensy/avr/boards.txt) into Teensy hardware directory (./arduino-1.8.12/hardware/teensy/avr/boards.txt). 
+
+Supposing the Arduino version is 1.8.12. This file must be copied into the directory:
+
+- `./arduino-1.8.12/hardware/teensy/avr/boards.txt`
+
+Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz
+This file must be copied into the directory:
+
+- `./arduino-x.yy.zz/hardware/teensy/avr/boards.txt`
+
+ 3. ***To be able to compile and run on SAM DUE boards***, you have to copy the whole [SAM DUE](Packages_Patches/arduino/hardware/sam/1.6.12) directory into Arduino sam directory (~/.arduino15/packages/arduino/hardware/sam/1.6.12). 
+
+Supposing the Arduino SAM core version is 1.6.12. This file must be copied into the directory:
+
+- `~/.arduino15/packages/arduino/hardware/sam/1.6.12/platform.txt`
+
+Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz
+This file must be copied into the directory:
+
+- `~/.arduino15/packages/arduino/hardware/sam/x.yy.zz/platform.txt`
+
+ 4. ***To be able to compile without error and automatically detect and display BOARD_NAME on Arduino SAMD (Nano-33-IoT, etc) boards***, you have to copy the whole [Arduino SAMD cores 1.8.8](Packages_Patches/arduino/hardware/samd/1.8.8) directory into Arduino SAMD directory (~/.arduino15/packages/arduino/hardware/samd/1.8.8).
+ 
+Supposing the Arduino SAMD version is 1.8.8. These files must be copied into the directory:
+- `~/.arduino15/packages/arduino/hardware/samd/1.8.8/platform.txt`
+- ***`~/.arduino15/packages/arduino/hardware/samd/1.8.8/cores/arduino/Arduino.h`***
+
+Whenever a new version is installed, remember to copy these files into the new version directory. For example, new version is x.yy.z
+
+These files must be copied into the directory:
+
+- `~/.arduino15/packages/arduino/hardware/samd/x.yy.z/platform.txt`
+- ***`~/.arduino15/packages/arduino/hardware/samd/x.yy.z/cores/arduino/Arduino.h`***
+ 
+ This is mandatory to fix the ***notorious Arduino SAMD compiler error***. See [Improve Arduino compatibility with the STL (min and max macro)](https://github.com/arduino/ArduinoCore-samd/pull/399)
+ 
+```
+ ...\arm-none-eabi\include\c++\7.2.1\bits\stl_algobase.h:243:56: error: macro "min" passed 3 arguments, but takes just 2
+     min(const _Tp& __a, const _Tp& __b, _Compare __comp)
+```
+
+Whenever the above-mentioned compiler error issue is fixed with the new Arduino SAMD release, you don't need to copy the `Arduino.h` file anymore.
+
+ 5. ***To be able to automatically detect and display BOARD_NAME on Adafruit SAMD (Itsy-Bitsy M4, etc) boards***, you have to copy the file [Adafruit SAMD platform.txt](Packages_Patches/adafruit/hardware/samd/1.6.0) into Adafruit samd directory (~/.arduino15/packages/adafruit/hardware/samd/1.6.0). 
+
+Supposing the Adafruit SAMD core version is 1.6.0. This file must be copied into the directory:
+
+- `~/.arduino15/packages/adafruit/hardware/samd/1.6.0/platform.txt`
+
+Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz
+This file must be copied into the directory:
+
+- `~/.arduino15/packages/adafruit/hardware/samd/x.yy.zz/platform.txt`
+
+ 6. ***To be able to automatically detect and display BOARD_NAME on Seeeduino SAMD (XIAO M0, Wio Terminal, etc) boards***, you have to copy the file [Seeeduino SAMD platform.txt](Packages_Patches/Seeeduino/hardware/samd/1.7.8) into Adafruit samd directory (~/.arduino15/packages/Seeeduino/hardware/samd/1.7.8). 
+
+Supposing the Seeeduino SAMD core version is 1.7.8. This file must be copied into the directory:
+
+- `~/.arduino15/packages/Seeeduino/hardware/samd/1.7.8/platform.txt`
+
+Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz
+This file must be copied into the directory:
+
+- `~/.arduino15/packages/Seeeduino/hardware/samd/x.yy.zz/platform.txt`
+
+7. ***To use Serial1 on some STM32 boards without Serial1 definition (Nucleo-144 NUCLEO_F767ZI, Nucleo-64 NUCLEO_L053R8, etc.) boards***, you have to copy the files [STM32 variant.h](Packages_Patches/STM32/hardware/stm32/1.9.0) into STM32 stm32 directory (~/.arduino15/packages/STM32/hardware/stm32/1.9.0). You have to modify the files corresponding to your boards, this is just an illustration how to do.
+
+Supposing the STM32 stm32 core version is 1.9.0. These files must be copied into the directory:
+
+- `~/.arduino15/packages/STM32/hardware/stm32/1.9.0/variants/NUCLEO_F767ZI/variant.h` for Nucleo-144 NUCLEO_F767ZI.
+- `~/.arduino15/packages/STM32/hardware/stm32/1.9.0/variants/NUCLEO_L053R8/variant.h` for Nucleo-64 NUCLEO_L053R8.
+
+Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz,
+theses files must be copied into the corresponding directory:
+
+- `~/.arduino15/packages/STM32/hardware/stm32/x.yy.zz/variants/NUCLEO_F767ZI/variant.h`
+- `~/.arduino15/packages/STM32/hardware/stm32/x.yy.zz/variants/NUCLEO_L053R8/variant.h`
 
 ---
 
@@ -174,6 +314,7 @@ will be useful for Arduino lovers.
      
     uint32_t 	recv (uint8_t *coming_mux_id, uint8_t *buffer, uint32_t buffer_size, uint32_t timeout=1000) : Receive data from all of TCP or UDP builded already in multiple mode. 
 ```
+---
 
 ### Suppported Mainboards
   
@@ -204,7 +345,9 @@ The connection should be like these:
     ESP8266_CH_PD->3.3V
     ESP8266_VCC->3.3V
     ESP8266_GND->GND
-  
+
+---
+
 ### Attention
 
 The size of data from ESP8266/ESP32-AT is sometimes too big for Arduino boards, so the library can't receive the whole buffer because the size of the hardware serial buffer, defined in HardwareSerial.h, is too small.
@@ -234,8 +377,10 @@ The `SERIAL_TX_BUFFER_SIZE` and `SERIAL_RX_BUFFER_SIZE` are already redefined to
   #endif
 #endif
 ```
+---
+---
 
-See examples 
+### Examples 
 
 1. [ConnectWiFi](examples/ConnectWiFi)
 2. [HTTPGET](examples/HTTPGET)
@@ -247,7 +392,7 @@ See examples
 
 ---
 
-### Example [TCPServer](examples/TCPServer)
+#### Example [TCPServer](examples/TCPServer)
 
 Please take a look at other examples, as well.
 
@@ -605,6 +750,8 @@ void loop(void)
 
 1. All the credits go to the original authors of the [ITEADLIB_Arduino_WeeESP8266 Library](https://github.com/itead/ITEADLIB_Arduino_WeeESP8266).
 
+---
+
 ### Contributing
 
 If you want to contribute to this project:
@@ -612,4 +759,10 @@ If you want to contribute to this project:
 - Ask for enhancements
 - Create issues and pull requests
 - Tell other people about this library
+
+---
+
+## Copyright
+
+Copyright 2020- Khoi Hoang
 
