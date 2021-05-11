@@ -1,36 +1,38 @@
 /****************************************************************************************************************************
-   ESP_AT_Lib_Impl.h - Dead simple ESP8266/ESP32-AT-command wrapper
-   For ESP8266/ESP32-AT-command running shields
+  ESP_AT_Lib_Impl.h - Dead simple ESP8266/ESP32-AT-command wrapper
+  For ESP8266/ESP32-AT-command running shields
 
-   ESP_AT_Lib is a wrapper library for the ESP8266/ESP32 AT-command shields
-   
-   Based on and modified from ESP8266 https://github.com/esp8266/Arduino/releases
-   Built by Khoi Hoang https://github.com/khoih-prog/ESP_AT_Lib
-   Licensed under MIT license
-   Version: 1.0.0
-   
-   @file ESP_AT_Lib_Impl.cpp
-   @brief The implementation of class ESP_AT for ESP8266/ESP32-AT-command.
-   @author Wu Pengfei<pengfei.wu@itead.cc>
-   @date 2015.02
+  ESP_AT_Lib is a wrapper library for the ESP8266/ESP32 AT-command shields
 
-   @par Copyright:
-   Copyright (c) 2015 ITEAD Intelligent Systems Co., Ltd. \n\n
-   This program is free software; you can redistribute it and/or
-   modify it under the terms of the GNU General Public License as
-   published by the Free Software Foundation; either version 2 of
-   the License, or (at your option) any later version. \n\n
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-   THE SOFTWARE.
-   
-   Version Modified By   Date      Comments
-   ------- -----------  ---------- -----------
-    1.0.0   K Hoang      12/02/2020 Initial coding for ESP8266/ESP32-AT shields to support Mega, nRF52, SAMD, DUE, STM32, etc.
+  Based on and modified from ESP8266 https://github.com/esp8266/Arduino/releases
+  Built by Khoi Hoang https://github.com/khoih-prog/ESP_AT_Lib
+  Licensed under MIT license
+
+  @file ESP_AT_Lib.cpp
+  @brief The implementation of class ESP_AT for ESP8266/ESP32-AT-command.
+  @author Wu Pengfei<pengfei.wu@itead.cc>
+  @date 2015.02
+
+  @par Copyright:
+  Copyright (c) 2015 ITEAD Intelligent Systems Co., Ltd. \n\n
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 2 of
+  the License, or (at your option) any later version. \n\n
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+
+  Version: 1.1.0
+
+  Version Modified By   Date      Comments
+  ------- -----------  ---------- -----------
+  1.0.0   K Hoang      12/02/2020 Initial coding for ESP8266/ESP32-AT shields to support Mega, nRF52, SAMD, DUE, STM32, etc.
+  1.1.0   K Hoang      10/05/2021 Add support to BOARD_SIPEED_MAIX_DUINO and RASPBERRY_PI_PICO
  *****************************************************************************************************************************/
 
 #ifndef __ESP_AT_LIB_IMPL_H__
