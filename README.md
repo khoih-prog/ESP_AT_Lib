@@ -122,7 +122,7 @@ This [**ESP_AT_Lib** library](https://github.com/khoih-prog/ESP_AT_Lib) currentl
 ---
 ---
 
-## Changelog
+### Changelog
 
 ### Releases v1.1.0
 
@@ -161,7 +161,7 @@ This [**ESP_AT_Lib** library](https://github.com/khoih-prog/ESP_AT_Lib) currentl
 
 ### Important Notes about AT Firmwares
 
-### 1. Firmwares tested OK with ESP8266 AT shields
+#### 1. Firmwares tested OK with ESP8266 AT shields
 
   - [`Ai-Thinker AT Firmware v1.5.4`](https://github.com/khoih-prog/ESP8266_AT_WebServer/blob/master/AT_Firmwares/At_firmware_bin1.54.zip)
   
@@ -189,7 +189,7 @@ This [**ESP_AT_Lib** library](https://github.com/khoih-prog/ESP_AT_Lib) currentl
     ```
   
   
-### 2. Firmwares tested OK with ESP32 AT shields
+#### 2. Firmwares tested OK with ESP32 AT shields
 
   - [`AT version_2.1.0.0_dev`](https://github.com/khoih-prog/ESP8266_AT_WebServer/blob/master/AT_Firmwares/AT_version_2.1.0.0_dev.zip)
     
@@ -948,7 +948,7 @@ void loop(void)
 
 ### Debug Terminal Output Samples
 
-### 1. HTTPGET on RASPBERRY_PI_PICO with ESP8266-AT shield
+#### 1. HTTPGET on RASPBERRY_PI_PICO with ESP8266-AT shield
 
 This is the terminal output when running [HTTPGET](examples/HTTPGET) example on **RASPBERRY_PI_PICO with ESP8266-AT shield**:
 
@@ -1036,7 +1036,7 @@ Sometimes, the library will only work if you update the `ESP8266/ESP32-AT shield
 ---
 ---
 
-## Releases
+### Releases
 
 ### Releases v1.1.0
 
