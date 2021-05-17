@@ -16,6 +16,7 @@
   * [Features](#features)
   * [Currently Supported Boards](#currently-supported-boards)
 * [Changelog](#changelog)
+  * [Releases v1.2.0](#releases-v120)
   * [Releases v1.1.0](#releases-v110)
   * [Releases v1.0.0](#releases-v100)
 * [Prerequisites](#prerequisites)
@@ -36,9 +37,11 @@
   * [5. For Adafruit SAMD boards](#5-for-adafruit-samd-boards)
   * [6. For Seeeduino SAMD boards](#6-for-seeeduino-samd-boards)
   * [7. For STM32 boards](#7-for-stm32-boards) 
-    * [7.1 For STM32 boards to use LAN8720](#71-for-stm32-boards-to-use-lan8720)
-    * [7.2 For STM32 boards to use Serial1](#72-for-stm32-boards-to-use-serial1)
-  * [8. For RP2040-based boards](#8-for-rp2040-based-boards)
+    * [7.1. For STM32 boards to use LAN8720](#71-for-stm32-boards-to-use-lan8720)
+    * [7.2. For STM32 boards to use Serial1](#72-for-stm32-boards-to-use-serial1)
+  * [8. For RP2040-based boards using Earle Philhower arduino-pico core](#8-for-rp2040-based-boards-using-earle-philhower-arduino-pico-core)
+    * [8.1. To use BOARD_NAME](#81-to-use-board_name)
+    * [8.2. To avoid compile error relating to microsecondsToClockCycles](#82-to-avoid-compile-error-relating-to-microsecondstoclockcycles)
 * [HOWTO Get started](#howto-get-started)
   * [API List](#api-list)
 * [Hardware Connection](#hardware-connection)
@@ -114,7 +117,7 @@ This [**ESP_AT_Lib** library](https://github.com/khoih-prog/ESP_AT_Lib) currentl
 - Generic Flight Controllers
 - Midatronics boards
 
-7. RP2040-based boards, such as **RASPBERRY_PI_PICO, ADAFRUIT_FEATHER_RP2040 and GENERIC_RP2040**.
+7. RP2040-based boards, such as **RASPBERRY_PI_PICO, ADAFRUIT_FEATHER_RP2040 and GENERIC_RP2040** using [**Earle Philhower's arduino-pico** core v1.4.0+](https://github.com/earlephilhower/arduino-pico) or [**Arduino-mbed RP2040** core](https://github.com/arduino/ArduinoCore-mbed).
 
 8. **SIPEED_MAIX_DUINO** boards
 
@@ -123,6 +126,11 @@ This [**ESP_AT_Lib** library](https://github.com/khoih-prog/ESP_AT_Lib) currentl
 ---
 
 ### Changelog
+
+### Releases v1.2.0
+
+1. Add support to RP2040-based boards, such as **RASPBERRY_PI_PICO boards** using [**Arduino-mbed RP2040** core](https://github.com/arduino/ArduinoCore-mbed).
+2. Fix compiler warnings
 
 ### Releases v1.1.0
 
@@ -153,10 +161,12 @@ This [**ESP_AT_Lib** library](https://github.com/khoih-prog/ESP_AT_Lib) currentl
  8. [`Seeeduino SAMD core 1.8.1+`](https://github.com/Seeed-Studio/ArduinoCore-samd) for SAMD21/SAMD51 boards (XIAO M0, Wio Terminal, etc.). [![Latest release](https://img.shields.io/github/release/Seeed-Studio/ArduinoCore-samd.svg)](https://github.com/Seeed-Studio/ArduinoCore-samd/releases/latest/)
  9. [`Adafruit nRF52 v0.21.0+`](https://github.com/adafruit/Adafruit_nRF52_Arduino) for nRF52 boards such as Adafruit NRF52840_FEATHER, NRF52832_FEATHER, NRF52840_FEATHER_SENSE, NRF52840_ITSYBITSY, NRF52840_CIRCUITPLAY, NRF52840_CLUE, NRF52840_METRO, NRF52840_PCA10056, PARTICLE_XENON, **NINA_B302_ublox**, etc. [![GitHub release](https://img.shields.io/github/release/adafruit/Adafruit_nRF52_Arduino.svg)](https://github.com/adafruit/Adafruit_nRF52_Arduino/releases/latest)
 10. [`Earle Philhower's arduino-pico core v1.2.1+`](https://github.com/earlephilhower/arduino-pico) for RP2040-based boards such as **RASPBERRY_PI_PICO, ADAFRUIT_FEATHER_RP2040 and GENERIC_RP2040**, etc. [![GitHub release](https://img.shields.io/github/release/earlephilhower/arduino-pico.svg)](https://github.com/earlephilhower/arduino-pico/releases/latest)
-11. [`Ai-Thinker AT Firmware v1.5.4`](AT_Firmwares/At_firmware_bin1.54.zip) or [`AT Firmware v1.7.4.0`](AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip) for ESP8266-AT shields.
-12. [`AT version_2.1.0.0_dev`](AT_Firmwares/AT_version_2.1.0.0_dev.zip) for ESP32-AT shields.
-13. `AT version_1.1.4` for WIS600-01S and W600-AT WiFi shields.
+11. [`Arduino mbed_rp2040 core 2.0.0+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) RP2040-based boards, such as RASPBERRY_PI_PICO. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
+12. [`Ai-Thinker AT Firmware v1.5.4`](AT_Firmwares/At_firmware_bin1.54.zip) or [`AT Firmware v1.7.4.0`](AT_Firmwares/AT_Firmware_bin_1.7.4.0.zip) for ESP8266-AT shields.
+13. [`AT version_2.1.0.0_dev`](AT_Firmwares/AT_version_2.1.0.0_dev.zip) for ESP32-AT shields.
+14. `AT version_1.1.4` for WIS600-01S and W600-AT WiFi shields.
 
+---
 ---
 
 ### Important Notes about AT Firmwares
@@ -416,18 +426,37 @@ theses files must be copied into the corresponding directory:
 - `~/.arduino15/packages/STM32/hardware/stm32/x.yy.zz/variants/NUCLEO_L053R8/variant.h`
 
 
-#### 8. For RP2040-based boards
- 
- ***To be able to automatically detect and display BOARD_NAME on Seeeduino SAMD (RASPBERRY_PI_PICO, ADAFRUIT_FEATHER_RP2040, GENERIC_RP2040, etc) boards***, you have to copy the file [RP2040 platform.txt](Packages_Patches/rp2040/hardware/rp2040/1.2.1) into rp2040 directory (~/.arduino15/packages/rp2040/hardware/rp2040/1.2.1). 
+#### 8. For RP2040-based boards using [Earle Philhower arduino-pico core](https://github.com/earlephilhower/arduino-pico)
 
-Supposing the rp2040 core version is 1.2.1. This file must be copied into the directory:
+#### 8.1 To use BOARD_NAME
 
-- `~/.arduino15/packages/rp2040/hardware/rp2040/1.2.1/platform.txt`
+ **To be able to automatically detect and display BOARD_NAME on Seeeduino SAMD (RASPBERRY_PI_PICO, ADAFRUIT_FEATHER_RP2040, GENERIC_RP2040, etc) boards**, you have to copy the file [RP2040 platform.txt](Packages_Patches/rp2040/hardware/rp2040/1.4.0) into rp2040 directory (~/.arduino15/packages/rp2040/hardware/rp2040/1.4.0). 
+
+Supposing the rp2040 core version is 1.4.0. This file must be copied into the directory:
+
+- `~/.arduino15/packages/rp2040/hardware/rp2040/1.4.0/platform.txt`
 
 Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz
 This file must be copied into the directory:
 
 - `~/.arduino15/packages/rp2040/hardware/rp2040/x.yy.zz/platform.txt`
+
+With core after v1.4.0, this step is not necessary anymore thanks to the PR [Add -DBOARD_NAME="{build.board}" #136](https://github.com/earlephilhower/arduino-pico/pull/136).
+
+#### 8.2 To avoid compile error relating to microsecondsToClockCycles
+
+Some libraries, such as [Adafruit DHT-sensor-library](https://github.com/adafruit/DHT-sensor-library), require the definition of microsecondsToClockCycles(). **To be able to compile and run on RP2040-based boards**, you have to copy the files in [**RP2040 Arduino.h**](Packages_Patches/rp2040/hardware/rp2040/1.4.0/cores/rp2040/Arduino.h) into rp2040 directory (~/.arduino15/packages/rp2040/hardware/rp2040/1.4.0).
+
+Supposing the rp2040 core version is 1.4.0. This file must be copied to replace:
+
+- `~/.arduino15/packages/rp2040/hardware/rp2040/1.4.0/cores/rp2040/Arduino.h`
+
+Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz
+This file must be copied to replace:
+
+- `~/.arduino15/packages/rp2040/hardware/rp2040/x.yy.zz/cores/rp2040/Arduino.h`
+
+With core after v1.4.0, this step is not necessary anymore thanks to the PR [Add defs for compatibility #142](https://github.com/earlephilhower/arduino-pico/pull/142).
 
 
 ---
@@ -955,7 +984,7 @@ This is the terminal output when running [HTTPGET](examples/HTTPGET) example on 
 
 ```
 Start HTTPGET on RASPBERRY_PI_PICO
-ESP_AT_Lib v1.1.0
+ESP_AT_Lib v1.2.0
 FW Version:AT+GMR
 AT version:1.7.4.0(May 11 2020 19:13:04)
 SDK version:3.0.4(9532ceb)
@@ -1038,6 +1067,11 @@ Sometimes, the library will only work if you update the `ESP8266/ESP32-AT shield
 
 ### Releases
 
+### Releases v1.2.0
+
+1. Add support to RP2040-based boards, such as **RASPBERRY_PI_PICO boards** using [**Arduino-mbed RP2040** core](https://github.com/arduino/ArduinoCore-mbed).
+2. Fix compiler warnings
+
 ### Releases v1.1.0
 
 1. Add support to **RASPBERRY_PI_PICO boards** using [Earle Philhower's arduino-pico core](https://github.com/earlephilhower/arduino-pico)
@@ -1066,7 +1100,6 @@ Submit issues to: [ESP_AT_Lib issues](https://github.com/khoih-prog/ESP_AT_Lib/i
 ### TO DO
 
 1. Fix bugs
-2. Add support to RP2040-based boards such as RASPBERRY_PI_PICO, using [**Arduino-mbed RP2040** core](https://github.com/arduino/ArduinoCore-mbed)
 
 ### DONE
 
@@ -1079,6 +1112,8 @@ Submit issues to: [ESP_AT_Lib issues](https://github.com/khoih-prog/ESP_AT_Lib/i
  7. Add support to SIPEED_MAIX_DUINO
  8. Add Table-of-Contents
  9. Add Version String
+10. Add support to RP2040-based boards, such as **RASPBERRY_PI_PICO boards** using [Earle Philhower's arduino-pico core](https://github.com/earlephilhower/arduino-pico)
+11. Add support to RP2040-based boards, such as **RASPBERRY_PI_PICO boards** using [**Arduino-mbed RP2040** core](https://github.com/arduino/ArduinoCore-mbed)
 
 ---
 ---

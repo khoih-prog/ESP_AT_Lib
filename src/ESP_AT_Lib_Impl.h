@@ -27,12 +27,13 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 
-  Version: 1.1.0
+  Version: 1.2.0
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      12/02/2020 Initial coding for ESP8266/ESP32-AT shields to support Mega, nRF52, SAMD, DUE, STM32, etc.
   1.1.0   K Hoang      10/05/2021 Add support to BOARD_SIPEED_MAIX_DUINO and RASPBERRY_PI_PICO
+  1.2.0   K Hoang      17/05/2021 Add support to RP2040-based boards using Arduino-mbed RP2040 core. Fix compiler warnings
  *****************************************************************************************************************************/
 
 #ifndef __ESP_AT_LIB_IMPL_H__
@@ -968,7 +969,7 @@ bool ESP8266::sATCWMODE(uint8_t mode, uint8_t pattern)
 // ESP32-AT not support _CUR and _DEF here
 bool ESP8266::qATCWJAP(String &ssid, uint8_t pattern)
 {
-  bool ret;
+  //bool ret;
 
   if (!pattern)
   {
@@ -1320,13 +1321,16 @@ bool ESP8266::sATCWDHCP(uint8_t mode, uint8_t en, uint8_t pattern)
 }
 #endif
 
-
+// ESP8266-AT => AT+CWDHCP=<mode>,<en>
+// • <en>:
+//    ‣ 0: disable DHCP
+//    ‣ 1: enable DHCP
 // Auto-Connects to the AP or Not
 bool ESP8266::eATCWAUTOCONN(uint8_t en)
 {
   rx_empty();
 
-  if (en > 1 || en < 0)
+  if (en > 1)
   {
     return false;
   }
@@ -1910,7 +1914,7 @@ bool ESP8266::sATCIPMODE(uint8_t mode)
 {
   String data;
 
-  if (mode > 1 || mode < 0)
+  if (mode > 1)
   {
     return false;
   }
@@ -2099,7 +2103,7 @@ uint32_t ESP8266::recvPkg(uint8_t *buffer, uint32_t buffer_size, uint32_t *data_
   if (has_data) 
   {
     i = 0;
-    ret = len > buffer_size ? buffer_size : len;
+    ret = (uint32_t) len > buffer_size ? buffer_size : (uint32_t) len;
     start = millis();
     
     while (millis() - start < 3000) 
