@@ -58,7 +58,7 @@
 * [Example TCPServer](#example-tcpserver)
 * [Debug Terminal Output Samples](#debug-terminal-output-samples)
   * [1. HTTPGET on RASPBERRY_PI_PICO with ESP8266-AT shield](#1-httpget-on-raspberry_pi_pico-with-esp8266-at-shield)
-  * [2. HTTPGET on MBED RASPBERRY_PI_PICO with ESP8266-AT shield](#1-httpget-on-mbed-raspberry_pi_pico-with-esp8266-at-shield)
+  * [2. HTTPGET on MBED RASPBERRY_PI_PICO with ESP8266-AT shield](#2-httpget-on-mbed-raspberry_pi_pico-with-esp8266-at-shield)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Releases](#releases)
