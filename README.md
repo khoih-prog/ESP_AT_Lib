@@ -58,6 +58,7 @@
 * [Example TCPServer](#example-tcpserver)
 * [Debug Terminal Output Samples](#debug-terminal-output-samples)
   * [1. HTTPGET on RASPBERRY_PI_PICO with ESP8266-AT shield](#1-httpget-on-raspberry_pi_pico-with-esp8266-at-shield)
+  * [2. HTTPGET on MBED RASPBERRY_PI_PICO with ESP8266-AT shield](#1-httpget-on-mbed-raspberry_pi_pico-with-esp8266-at-shield)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Releases](#releases)
@@ -979,7 +980,7 @@ void loop(void)
 
 #### 1. HTTPGET on RASPBERRY_PI_PICO with ESP8266-AT shield
 
-This is the terminal output when running [HTTPGET](examples/HTTPGET) example on **RASPBERRY_PI_PICO with ESP8266-AT shield**:
+This is the terminal output when running [HTTPGET](examples/HTTPGET) example on **RASPBERRY_PI_PICO with ESP8266-AT shield**, using [Earle Philhower's arduino-pico core](https://github.com/earlephilhower/arduino-pico)
 
 
 ```
@@ -1036,6 +1037,78 @@ Accept-Ranges: bytes
  `;;;;;,             .;;;;;; ;;;;;;;              ;;;;;; 
   ;;;;;;:           :;;;;;;.  ;;;;
 ============================================================
+```
+
+---
+
+#### 2. HTTPGET on MBED RASPBERRY_PI_PICO with ESP8266-AT shield
+
+This is the terminal output when running [HTTPGET](examples/HTTPGET) example on **RASPBERRY_PI_PICO with ESP8266-AT shield**, using [**Arduino-mbed RP2040** core](https://github.com/arduino/ArduinoCore-mbed).
+
+
+```
+Start HTTPGET on MBED RASPBERRY_PI_PICO
+ESP_AT_Lib v1.2.0
+FW Version:AT version:1.7.4.0(May 11 2020 19:13:04)
+SDK version:3.0.4(9532ceb)
+compile time:May 27 2020 10:12:17
+Bin version(Wroom 02):1.7.4
+OK
+Set AP/STA Mode OK
+Connect to WiFi OK
+IP: +CIFSR:APIP,"192.168.4.1"
++CIFSR:APMAC,"6a:c6:3a:a6:f0:f1"
++CIFSR:STAIP,"192.168.2.76"
++CIFSR:STAMAC,"68:c6:3a:a6:f0:f1"
+disableMUX OK
+Done
+Create TCP OK
+=========================Received============================
+HTTP/1.1 200 OK
+Server: nginx/1.4.2
+Date: Tue, 18 May 2021 00:00:44 GMT
+Content-Type: text/plain
+Content-Length: 2263
+Last-Modified: Wed, 02 Oct 2013 13:46:47 GMT
+Connection: close
+Vary: Accept-Encoding
+ETag: "524c23c7-8d7"
+Accept-Ranges: bytes
+
+
+           `:;;;,`                      .:;;:.           
+        .;;;;;;;;;;;`                :;;;;;;;;;;:     TM 
+      `;;;;;;;;;;;;;;;`            :;;;;;;;;;;;;;;;      
+     :;;;;;;;;;;;;;;;;;;         `;;;;;;;;;;;;;;;;;;     
+    ;;;;;;;;;;;;;;;;;;;;;       .;;;;;;;;;;;;;;;;;;;;    
+   ;;;;;;;;:`   `;;;;;;;;;     ,;;;;;;;;.`   .;;;;;;;;   
+  .;;;;;;,         :;;;;;;;   .;;;;;;;          ;;;;;;;  
+  ;;;;;;             ;;;;;;;  ;;;;;;,            ;;;;;;. 
+ ,;;;;;               ;;;;;;.;;;;;;`              ;;;;;; 
+ ;;;;;.                ;;;;;;;;;;;`      ```       ;;;;;`
+ ;;;;;                  ;;;;;;;;;,       ;;;       .;;;;;
+`;;;;:                  `;;;;;;;;        ;;;        ;;;;;
+,;;;;`    `,,,,,,,,      ;;;;;;;      .,,;;;,,,     ;;;;;
+:;;;;`    .;;;;;;;;       ;;;;;,      :;;;;;;;;     ;;;;;
+:;;;;`    .;;;;;;;;      `;;;;;;      :;;;;;;;;     ;;;;;
+.;;;;.                   ;;;;;;;.        ;;;        ;;;;;
+ ;;;;;                  ;;;;;;;;;        ;;;        ;;;;;
+ ;;;;;                 .;;;;;;;;;;       ;;;       ;;;;;,
+ ;;;;;;               `;;;;;;;;;;;;                ;;;;; 
+ `;;;;;,             .;;;;;; ;;;;;;;              ;;;;;; 
+  ;;;;;;:           :;;;;;;.  ;;;;;;;            ;;;;;;  
+   ;;;;;;;`       .;;;;;;;,    ;;;;;;;;        ;;;;;;;:  
+    ;;;;;;;;;:,:;;;;;;;;;:      ;;;;;;;;;;:,;;;;;;;;;;   
+    `;;;;;;;;;;;;;;;;;;;.        ;;;;;;;;;;;;;;;;;;;;    
+      ;;;;;;;;;;;;;;;;;           :;;;;;;;;;;;;;;;;:     
+       ,;;;;;;;;;;;;;,              ;;;;;;;;;;;;;;       
+         .;;;;;;;;;`                  ,;;;;;;;;:         
+                                                         
+                                                         
+                                                         
+                                                  
+============================================================
+
 ```
 
 ---

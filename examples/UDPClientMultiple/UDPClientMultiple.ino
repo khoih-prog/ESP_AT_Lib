@@ -234,7 +234,25 @@
 #elif ( defined(ARDUINO_RASPBERRY_PI_PICO) || defined(ARDUINO_ADAFRUIT_FEATHER_RP2040) || defined(ARDUINO_GENERIC_RP2040) )
     
   #warning RASPBERRY_PI_PICO board selected
-  #define BOARD_TYPE  "RASPBERRY_PI_PICO"
+
+  #if defined(ARDUINO_ARCH_MBED)
+
+    #if defined(BOARD_NAME)
+      #undef BOARD_NAME
+    #endif
+
+    #if defined(ARDUINO_RASPBERRY_PI_PICO) 
+      #define BOARD_TYPE      "MBED RASPBERRY_PI_PICO"
+    #elif defined(ARDUINO_ADAFRUIT_FEATHER_RP2040)
+      #define BOARD_TYPE      "MBED DAFRUIT_FEATHER_RP2040"
+    #elif defined(ARDUINO_GENERIC_RP2040)
+      #define BOARD_TYPE      "MBED GENERIC_RP2040"
+    #else
+      #define BOARD_TYPE      "MBED Unknown RP2040"
+    #endif
+  #else  
+    #define BOARD_TYPE  "RASPBERRY_PI_PICO"
+  #endif
   
   #define EspSerial       Serial1   
   
