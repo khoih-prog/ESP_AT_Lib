@@ -27,13 +27,14 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
   
-  Version: 1.2.0
+  Version: 1.3.0
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      12/02/2020 Initial coding for ESP8266/ESP32-AT shields to support Mega, nRF52, SAMD, DUE, STM32, etc.
   1.1.0   K Hoang      10/05/2021 Add support to BOARD_SIPEED_MAIX_DUINO and RASPBERRY_PI_PICO
   1.2.0   K Hoang      17/05/2021 Add support to RP2040-based boards using Arduino-mbed RP2040 core. Fix compiler warnings
+  1.3.0   K Hoang      29/05/2021 Add support to RP2040-based Nano_RP2040_Connect using Arduino-mbed RP2040 core
  *****************************************************************************************************************************/
 
 /* Comment this out to disable prints and save space */
@@ -231,7 +232,8 @@
 
   #define EspSerial       Serial1
 
-#elif ( defined(ARDUINO_RASPBERRY_PI_PICO) || defined(ARDUINO_ADAFRUIT_FEATHER_RP2040) || defined(ARDUINO_GENERIC_RP2040) )
+#elif ( defined(ARDUINO_NANO_RP2040_CONNECT) || defined(ARDUINO_ARCH_RP2040) || defined(ARDUINO_RASPBERRY_PI_PICO) || \
+        defined(ARDUINO_GENERIC_RP2040) || defined(ARDUINO_ADAFRUIT_FEATHER_RP2040) )
     
   #warning RASPBERRY_PI_PICO board selected
 
@@ -247,6 +249,8 @@
       #define BOARD_TYPE      "MBED DAFRUIT_FEATHER_RP2040"
     #elif defined(ARDUINO_GENERIC_RP2040)
       #define BOARD_TYPE      "MBED GENERIC_RP2040"
+    #elif defined(ARDUINO_NANO_RP2040_CONNECT) 
+      #define BOARD_NAME      "MBED NANO_RP2040_CONNECT"  
     #else
       #define BOARD_TYPE      "MBED Unknown RP2040"
     #endif
@@ -254,7 +258,7 @@
     #define BOARD_TYPE  "RASPBERRY_PI_PICO"
   #endif
   
-  #define EspSerial       Serial1   
+  #define EspSerial       Serial1    
   
 #elif (ESP_AT_USE_AVR)
 
