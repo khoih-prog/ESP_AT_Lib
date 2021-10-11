@@ -7,7 +7,7 @@
   Based on and modified from ESP8266 https://github.com/esp8266/Arduino/releases
   Built by Khoi Hoang https://github.com/khoih-prog/ESP_AT_Lib
   Licensed under MIT license
-  Version: 1.4.0
+  Version: 1.4.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -16,6 +16,7 @@
   1.2.0   K Hoang      17/05/2021 Add support to RP2040-based boards using Arduino-mbed RP2040 core. Fix compiler warnings
   1.3.0   K Hoang      29/05/2021 Add support to RP2040-based Nano_RP2040_Connect using Arduino-mbed RP2040 core
   1.4.0   K Hoang      13/08/2021 Add support to Adafruit nRF52 core v0.22.0+
+  1.4.1   K Hoang      10/10/2021  Update `platform.ini` and `library.json`
  *****************************************************************************************************************************/
 
 #ifndef __ESP_AT_DEBUG_H__
