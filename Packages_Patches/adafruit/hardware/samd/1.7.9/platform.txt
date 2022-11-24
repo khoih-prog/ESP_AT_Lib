@@ -20,16 +20,16 @@
 # https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5---3rd-party-Hardware-specification
 
 name=Adafruit SAMD (32-bits ARM Cortex-M0+ and Cortex-M4) Boards
-version=1.7.4
+version=1.7.9
 
 # Compile variables
 # -----------------
 
-compiler.warning_flags=-w
-compiler.warning_flags.none=-w
-compiler.warning_flags.default=
-compiler.warning_flags.more=-Wall -Wno-expansion-to-defined
-compiler.warning_flags.all=-Wall -Wextra -Wno-expansion-to-defined
+compiler.warning_flags=-Werror=return-type
+compiler.warning_flags.none=-Werror=return-type
+compiler.warning_flags.default=-Werror=return-type
+compiler.warning_flags.more=-Wall -Werror=return-type -Wno-expansion-to-defined
+compiler.warning_flags.all=-Wall -Wextra -Werror=return-type -Wno-expansion-to-defined
 
 compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
 compiler.c.cmd=arm-none-eabi-gcc
@@ -153,6 +153,18 @@ tools.bossac18.upload.pattern="{path}/{cmd}" {upload.verbose} --port={serial.por
 
 tools.bossac18.network_cmd={runtime.tools.arduinoOTA.path}/bin/arduinoOTA
 tools.bossac18.upload.network_pattern="{network_cmd}" -address {serial.port} -port 65280 -username arduino -password "{network.password}" -sketch "{build.path}/{build.project_name}.bin" -upload /sketch -b
+
+# v1.9.1
+
+tools.bossac19.path={runtime.tools.bossac-1.9.1-arduino2.path}
+tools.bossac19.cmd=bossac
+
+tools.bossac19.upload.params.verbose=-i -d
+tools.bossac19.upload.params.quiet=
+tools.bossac19.upload.pattern="{path}/{cmd}" {upload.verbose} --port={serial.port.file} -U -i --offset={upload.offset} -w -v "{build.path}/{build.project_name}.bin" -R
+
+tools.bossac19.network_cmd={runtime.tools.arduinoOTA.path}/bin/arduinoOTA
+tools.bossac19.upload.network_pattern="{network_cmd}" -address {serial.port} -port 65280 -username arduino -password "{network.password}" -sketch "{build.path}/{build.project_name}.bin" -upload /sketch -b
 
 #
 # BOSSA (ignore binary size)

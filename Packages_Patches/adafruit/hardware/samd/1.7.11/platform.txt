@@ -20,16 +20,16 @@
 # https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5---3rd-party-Hardware-specification
 
 name=Adafruit SAMD (32-bits ARM Cortex-M0+ and Cortex-M4) Boards
-version=1.7.4
+version=1.7.11
 
 # Compile variables
 # -----------------
 
-compiler.warning_flags=-w
-compiler.warning_flags.none=-w
-compiler.warning_flags.default=
-compiler.warning_flags.more=-Wall -Wno-expansion-to-defined
-compiler.warning_flags.all=-Wall -Wextra -Wno-expansion-to-defined
+compiler.warning_flags=-Werror=return-type
+compiler.warning_flags.none=-Werror=return-type
+compiler.warning_flags.default=-Werror=return-type
+compiler.warning_flags.more=-Wall -Werror=return-type -Wno-expansion-to-defined
+compiler.warning_flags.all=-Wall -Wextra -Werror=return-type -Wno-expansion-to-defined
 
 compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
 compiler.c.cmd=arm-none-eabi-gcc
@@ -146,6 +146,7 @@ tools.bossac.upload.network_pattern="{network_cmd}" -address {serial.port} -port
 
 tools.bossac18.path={runtime.tools.bossac-1.8.0-48-gb176eee.path}
 tools.bossac18.cmd=bossac
+tools.bossac18.cmd.windows=bossac.exe
 
 tools.bossac18.upload.params.verbose=-i -d
 tools.bossac18.upload.params.quiet=
