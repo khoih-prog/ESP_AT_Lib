@@ -28,7 +28,7 @@
      defined(NRF52840_FEATHER_SENSE) || defined(NRF52840_ITSYBITSY) || defined(NRF52840_CIRCUITPLAY) || \
      defined(NRF52840_CLUE) || defined(NRF52840_METRO) || defined(NRF52840_PCA10056) || defined(PARTICLE_XENON) || \
      defined(MDBT50Q_RX) || defined(NINA_B302_ublox) || defined(NINA_B112_ublox) )
-  #include <Adafruit_TinyUSB.h>
+#include <Adafruit_TinyUSB.h>
 #endif
 
 #ifdef ESP_AT_LIB_DEBUG_OUTPUT

@@ -54,7 +54,7 @@
 
 // Default to use ESP8266-AT
 // _CUR and _DEF only valid for ESP8266-AT
-#ifndef USE_ESP32_AT  
+#ifndef USE_ESP32_AT
   #define USE_ESP32_AT              false
 #endif
 
@@ -74,17 +74,17 @@
     #undef SERIAL_TX_BUFFER_SIZE
     #define SERIAL_TX_BUFFER_SIZE     256
   #endif
-  
+
   #if defined(SERIAL_RX_BUFFER_SIZE)
     #undef SERIAL_RX_BUFFER_SIZE
     #define SERIAL_RX_BUFFER_SIZE     256
   #endif
 #else
-#if defined(SERIAL_TX_BUFFER_SIZE)
+  #if defined(SERIAL_TX_BUFFER_SIZE)
     #undef SERIAL_TX_BUFFER_SIZE
     #define SERIAL_TX_BUFFER_SIZE     2048
   #endif
-  
+
   #if defined(SERIAL_RX_BUFFER_SIZE)
     #undef SERIAL_RX_BUFFER_SIZE
     #define SERIAL_RX_BUFFER_SIZE     2048
@@ -116,7 +116,7 @@ class ESP8266
     {
       return m_puart;
     }
-    
+
     void changeUart(Stream* uart = &Serial)
     {
       m_puart = uart;

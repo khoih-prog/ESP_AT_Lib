@@ -21,8 +21,10 @@
       "extras",
       "tests"
     ]
-  },    
+  },
+  "license": "MIT",
   "frameworks": "*",
   "platforms": "*",
-  "examples": "examples/*/*/*.ino"
+  "examples": "examples/*/*/*.ino",
+  "headers": ["ESP_AT_Lib.h"]
 }

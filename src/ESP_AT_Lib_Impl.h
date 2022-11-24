@@ -59,6 +59,7 @@ bool ESP8266::kick(void)
 bool ESP8266::restart(void)
 {
   unsigned long start;
+
   if (eATRST())
   {
     delay(2000);
@@ -75,6 +76,7 @@ bool ESP8266::restart(void)
       delay(100);
     }
   }
+
   return false;
 }
 
@@ -109,6 +111,7 @@ bool ESP8266::deepSleep(uint32_t time)
 bool ESP8266::setOprToStation(uint8_t pattern1, uint8_t pattern2)
 {
   uint8_t mode;
+
   if (!qATCWMODE(&mode, pattern1))
   {
     return false;
@@ -500,9 +503,10 @@ uint32_t ESP8266::checkIPD(String& data)
   int32_t len = -1;
   int8_t id   = -1;
 
-  { // Just for easier diffing
+  {
+    // Just for easier diffing
     index_PIPDcomma = data.indexOf("+IPD,");
-    
+
     if (index_PIPDcomma != -1)
     {
       index_colon = data.indexOf(':', index_PIPDcomma + 5);
@@ -761,14 +765,14 @@ bool ESP8266::eATRST(void)
   m_puart->println(F("AT+RESTORE"));
 
   AT_LIB_LOGDEBUG(F("AT+RESTORE"));
-  
+
   //return recvFind("OK");
   return recvFind("OK", 5000);
 #else
   m_puart->println(F("AT+RST"));
 
   AT_LIB_LOGDEBUG(F("AT+RST"));
-  
+
   return recvFind("OK");
 #endif
 
@@ -837,6 +841,7 @@ bool ESP8266::eATSETUART(uint32_t baudrate, uint8_t pattern)
   switch (pattern)
   {
     case 1:
+
     // Deprecated => using _CUR
     //m_puart->print(F("AT+UART="));
     //AT_LIB_LOGDEBUG(F("AT+UART="));
@@ -845,6 +850,7 @@ bool ESP8266::eATSETUART(uint32_t baudrate, uint8_t pattern)
       m_puart->print(F("AT+UART_CUR="));
       AT_LIB_LOGDEBUG(F("AT+UART_CUR="));
       break;
+
     case 3:
       m_puart->print(F("AT+UART_DEF="));
       AT_LIB_LOGDEBUG(F("AT+UART_DEF="));
@@ -882,20 +888,24 @@ bool ESP8266::qATCWMODE(uint8_t *mode, uint8_t pattern)
   {
     return false;
   }
+
   rx_empty();
 
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->println(F("AT+CWMODE_DEF?"));
       AT_LIB_LOGDEBUG(F("AT+CWMODE_DEF?"));
       break;
+
     case 2:
       m_puart->println(F("AT+CWMODE_CUR?"));
       AT_LIB_LOGDEBUG(F("AT+CWMODE_CUR?"));
       break;
 #endif
+
     default:
       m_puart->println(F("AT+CWMODE?"));
       AT_LIB_LOGDEBUG(F("AT+CWMODE?"));
@@ -942,15 +952,18 @@ bool ESP8266::sATCWMODE(uint8_t mode, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->print(F("AT+CWMODE_DEF="));
       AT_LIB_LOGDEBUG(F("AT+CWMODE_DEF="));
       break;
+
     case 2:
       m_puart->print(F("AT+CWMODE_CUR="));
       AT_LIB_LOGDEBUG(F("AT+CWMODE_CUR="));
       break;
 #endif
+
     default:
       m_puart->print(F("AT+CWMODE="));
       AT_LIB_LOGDEBUG(F("AT+CWMODE="));
@@ -984,15 +997,18 @@ bool ESP8266::qATCWJAP(String &ssid, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->println(F("AT+CWJAP_DEF?"));
       AT_LIB_LOGDEBUG(F("AT+CWJAP_DEF?"));
       break;
+
     case 2:
       m_puart->println(F("AT+CWJAP_CUR?"));
       AT_LIB_LOGDEBUG(F("AT+CWJAP_CUR?"));
       break;
 #endif
+
     default:
       m_puart->println(F("AT+CWJAP?"));
       AT_LIB_LOGDEBUG(F("AT+CWJAP?"));
@@ -1026,15 +1042,18 @@ bool ESP8266::sATCWJAP(String ssid, String pwd, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->print(F("AT+CWJAP_DEF=\""));
       AT_LIB_LOGDEBUG(F("AT+CWJAP_DEF=\""));
       break;
+
     case 2:
       m_puart->print(F("AT+CWJAP_CUR=\""));
       AT_LIB_LOGDEBUG(F("AT+CWJAP_CUR=\""));
       break;
 #endif
+
     default:
       m_puart->print(F("AT+CWJAP=\""));
       AT_LIB_LOGDEBUG(F("AT+CWJAP=\""));
@@ -1099,15 +1118,18 @@ bool ESP8266::qATCWSAP(String &List, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->println(F("AT+CWSAP_DEF?"));
       AT_LIB_LOGDEBUG(F("AT+CWSAP_DEF?"));
       break;
+
     case 2:
       m_puart->println(F("AT+CWSAP_CUR?"));
       AT_LIB_LOGDEBUG(F("AT+CWSAP_CUR?"));
       break;
 #endif
+
     default:
       m_puart->println(F("AT+CWSAP?"));
       AT_LIB_LOGDEBUG(F("AT+CWSAP?"));
@@ -1133,15 +1155,18 @@ bool ESP8266::sATCWSAP(String ssid, String pwd, uint8_t chl, uint8_t ecn, uint8_
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->print(F("AT+CWSAP_DEF=\""));
       AT_LIB_LOGDEBUG(F("AT+CWSAP_DEF=\""));
       break;
+
     case 2:
       m_puart->print(F("AT+CWSAP_CUR=\""));
       AT_LIB_LOGDEBUG(F("AT+CWSAP_CUR=\""));
       break;
 #endif
+
     default:
       m_puart->print(F("AT+CWSAP=\""));
       AT_LIB_LOGDEBUG(F("AT+CWSAP=\""));
@@ -1197,15 +1222,18 @@ bool ESP8266::qATCWDHCP(String &List, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->println(F("AT+CWDHCP_DEF?"));
       AT_LIB_LOGDEBUG(F("AT+CWDHCP_DEF?"));
       break;
+
     case 2:
       m_puart->println(F("AT+CWDHCP_CUR?"));
       AT_LIB_LOGDEBUG(F("AT+CWDHCP_CUR?"));
       break;
 #endif
+
     default:
       m_puart->println(F("AT+CWDHCP?"));
       AT_LIB_LOGDEBUG(F("AT+CWDHCP?"));
@@ -1301,10 +1329,12 @@ bool ESP8266::sATCWDHCP(uint8_t mode, uint8_t en, uint8_t pattern)
       m_puart->print(F("AT+CWDHCP_DEF="));
       AT_LIB_LOGDEBUG(F("AT+CWDHCP_DEF="));
       break;
+
     case 2:
       m_puart->print(F("AT+CWDHCP_CUR="));
       AT_LIB_LOGDEBUG(F("AT+CWDHCP_CUR="));
       break;
+
     default:
       m_puart->print(F("AT+CWDHCP="));
       AT_LIB_LOGDEBUG(F("AT+CWDHCP="));
@@ -1361,15 +1391,18 @@ bool ESP8266::qATCIPSTAMAC(String &mac, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->println(F("AT+CIPSTAMAC_DEF?"));
       AT_LIB_LOGDEBUG(F("AT+CIPSTAMAC_DEF?"));
       break;
+
     case 2:
       m_puart->println(F("AT+CIPSTAMAC_CUR?"));
       AT_LIB_LOGDEBUG(F("AT+CIPSTAMAC_CUR?"));
       break;
 #endif
+
     default:
       m_puart->println(F("AT+CIPSTAMAC?"));
       AT_LIB_LOGDEBUG(F("AT+CIPSTAMAC?"));
@@ -1393,15 +1426,18 @@ bool ESP8266::eATCIPSTAMAC(String mac, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->print(F("AT+CIPSTAMAC_DEF="));
       AT_LIB_LOGDEBUG(F("AT+CIPSTAMAC_DEF="));
       break;
+
     case 2:
       m_puart->print(F("AT+CIPSTAMAC_CUR="));
       AT_LIB_LOGDEBUG(F("AT+CIPSTAMAC_CUR="));
       break;
 #endif
+
     default:
       m_puart->print(F("AT+CIPSTAMAC="));
       AT_LIB_LOGDEBUG(F("AT+CIPSTAMAC="));
@@ -1429,15 +1465,18 @@ bool ESP8266::qATCIPSTAIP(String &ip, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->println(F("AT+CIPSTA_DEF?"));
       AT_LIB_LOGDEBUG(F("AT+CIPSTA_DEF?"));
       break;
+
     case 2:
       m_puart->println(F("AT+CIPSTA_CUR?"));
       AT_LIB_LOGDEBUG(F("AT+CIPSTA_CUR?"));
       break;
 #endif
+
     default:
       m_puart->println(F("AT+CIPSTA?"));
       AT_LIB_LOGDEBUG(F("AT+CIPSTA?"));
@@ -1462,15 +1501,18 @@ bool ESP8266::eATCIPSTAIP(String ip, String gateway, String netmask, uint8_t pat
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->print(F("AT+CIPSTA_DEF="));
       AT_LIB_LOGDEBUG(F("AT+CIPSTA_DEF="));
       break;
+
     case 2:
       m_puart->print(F("AT+CIPSTA_CUR="));
       AT_LIB_LOGDEBUG(F("AT+CIPSTA_CUR="));
       break;
 #endif
+
     default:
       m_puart->print(F("AT+CIPSTA="));
       AT_LIB_LOGDEBUG(F("AT+CIPSTA="));
@@ -1502,15 +1544,18 @@ bool ESP8266::qATCIPAP(String &ip, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->println(F("AT+CIPAP_DEF?"));
       AT_LIB_LOGDEBUG(F("AT+CIPAP_DEF?"));
       break;
+
     case 2:
       m_puart->println(F("AT+CIPAP_CUR?"));
       AT_LIB_LOGDEBUG(F("AT+CIPAP_CUR?"));
       break;
 #endif
+
     default:
       m_puart->println(F("AT+CIPAP?"));
       AT_LIB_LOGDEBUG(F("AT+CIPAP?"));
@@ -1534,15 +1579,18 @@ bool ESP8266::eATCIPAP(String ip, uint8_t pattern)
   switch (pattern)
   {
 #if !USE_ESP32_AT
+
     case 1 :
       m_puart->print(F("AT+CIPAP_DEF="));
       AT_LIB_LOGDEBUG(F("AT+CIPAP_DEF="));
       break;
+
     case 2:
       m_puart->print(F("AT+CIPAP_CUR="));
       AT_LIB_LOGDEBUG(F("AT+CIPAP_CUR="));
       break;
 #endif
+
     default:
       m_puart->print(F("AT+CIPAP="));
       AT_LIB_LOGDEBUG(F("AT+CIPAP="));
@@ -1624,6 +1672,7 @@ bool ESP8266::sATCIPSTARTSingle(String type, String addr, uint32_t port)
   {
     return true;
   }
+
 #else
   data = recvString("OK", "ERROR", "ALREADY CONNECT", 10000);
 
@@ -1631,6 +1680,7 @@ bool ESP8266::sATCIPSTARTSingle(String type, String addr, uint32_t port)
   {
     return true;
   }
+
 #endif
 
   return false;
@@ -1665,6 +1715,7 @@ bool ESP8266::sATCIPSTARTMultiple(uint8_t mux_id, String type, String addr, uint
   {
     return true;
   }
+
 #else
   data = recvString("OK", "ERROR", "ALREADY CONNECT", 10000);
 
@@ -1672,6 +1723,7 @@ bool ESP8266::sATCIPSTARTMultiple(uint8_t mux_id, String type, String addr, uint
   {
     return true;
   }
+
 #endif
 
   return false;
@@ -1753,6 +1805,7 @@ bool ESP8266::sATCIPSENDSingleFromFlash(const uint8_t *buffer, uint32_t len)
 
     return recvFind("SEND OK", 10000);
   }
+
   return false;
 }
 
@@ -1804,6 +1857,7 @@ bool ESP8266::sATCIPCLOSEMultiple(uint8_t mux_id)
   {
     return true;
   }
+
 #else
   data = recvString("OK", "link is not", 5000);
 
@@ -1811,6 +1865,7 @@ bool ESP8266::sATCIPCLOSEMultiple(uint8_t mux_id)
   {
     return true;
   }
+
 #endif
 
   return false;
@@ -1887,6 +1942,7 @@ bool ESP8266::sATCIPSERVER(uint8_t mode, uint32_t port)
     {
       return true;
     }
+
 #else
     data = recvString("OK", "no change");
 
@@ -1894,6 +1950,7 @@ bool ESP8266::sATCIPSERVER(uint8_t mode, uint32_t port)
     {
       return true;
     }
+
 #endif
 
     return false;
@@ -2010,14 +2067,14 @@ uint32_t ESP8266::recv(uint8_t mux_id, uint8_t *buffer, uint32_t buffer_size, ui
 {
   uint8_t id;
   uint32_t ret;
-  
+
   ret = recvPkg(buffer, buffer_size, NULL, timeout, &id);
-  
-  if (ret > 0 && id == mux_id) 
+
+  if (ret > 0 && id == mux_id)
   {
     return ret;
   }
-  
+
   return 0;
 }
 
@@ -2030,7 +2087,8 @@ uint32_t ESP8266::recv(uint8_t *coming_mux_id, uint8_t *buffer, uint32_t buffer_
 /* +IPD,<id>,<len>:<data> */
 /* +IPD,<len>:<data> */
 
-uint32_t ESP8266::recvPkg(uint8_t *buffer, uint32_t buffer_size, uint32_t *data_len, uint32_t timeout, uint8_t *coming_mux_id)
+uint32_t ESP8266::recvPkg(uint8_t *buffer, uint32_t buffer_size, uint32_t *data_len, uint32_t timeout,
+                          uint8_t *coming_mux_id)
 {
   String data;
   char a;
@@ -2050,91 +2108,92 @@ uint32_t ESP8266::recvPkg(uint8_t *buffer, uint32_t buffer_size, uint32_t *data_
   }
 
   start = millis();
-  
-  while (millis() - start < timeout) 
+
+  while (millis() - start < timeout)
   {
-    if (m_puart->available() > 0) 
+    if (m_puart->available() > 0)
     {
       a = m_puart->read();
       data += a;
     }
 
     index_PIPDcomma = data.indexOf("+IPD,");
-    
-    if (index_PIPDcomma != -1) 
+
+    if (index_PIPDcomma != -1)
     {
       index_colon = data.indexOf(':', index_PIPDcomma + 5);
-      
-      if (index_colon != -1) 
+
+      if (index_colon != -1)
       {
         index_comma = data.indexOf(',', index_PIPDcomma + 5);
-        
+
         /* +IPD,id,len:data */
-        if (index_comma != -1 && index_comma < index_colon) 
+        if (index_comma != -1 && index_comma < index_colon)
         {
           id = data.substring(index_PIPDcomma + 5, index_comma).toInt();
-          
-          if (id < 0 || id > 4) 
+
+          if (id < 0 || id > 4)
           {
             return 0;
           }
-          
+
           len = data.substring(index_comma + 1, index_colon).toInt();
-          
-          if (len <= 0) 
-          {
-            return 0;
-          }
-        } 
-        else 
-        { 
-          /* +IPD,len:data */
-          len = data.substring(index_PIPDcomma + 5, index_colon).toInt();
-          
-          if (len <= 0) 
+
+          if (len <= 0)
           {
             return 0;
           }
         }
-        
+        else
+        {
+          /* +IPD,len:data */
+          len = data.substring(index_PIPDcomma + 5, index_colon).toInt();
+
+          if (len <= 0)
+          {
+            return 0;
+          }
+        }
+
         has_data = true;
         break;
       }
     }
   }
 
-  if (has_data) 
+  if (has_data)
   {
     i = 0;
     ret = (uint32_t) len > buffer_size ? buffer_size : (uint32_t) len;
     start = millis();
-    
-    while (millis() - start < 3000) 
+
+    while (millis() - start < 3000)
     {
-      while (m_puart->available() > 0 && i < ret) 
+      while (m_puart->available() > 0 && i < ret)
       {
         a = m_puart->read();
         buffer[i++] = a;
       }
-      
-      if (i == ret) 
+
+      if (i == ret)
       {
         rx_empty();
-        
-        if (data_len) 
+
+        if (data_len)
         {
           *data_len = len;
         }
-        
-        if (index_comma != -1 && coming_mux_id) 
+
+        if (index_comma != -1 && coming_mux_id)
         {
           *coming_mux_id = id;
         }
-        
+
         return ret;
       }
     }
   }
+
   return 0;
 }
 ///////////////
