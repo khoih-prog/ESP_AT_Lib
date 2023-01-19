@@ -784,7 +784,7 @@ This is the terminal output when running [HTTPGET](examples/HTTPGET) example on 
 
 ```cpp
 Start HTTPGET on RASPBERRY_PI_PICO
-ESP_AT_Lib v1.5.0
+ESP_AT_Lib v1.5.1
 FW Version:AT+GMR
 AT version:1.7.4.0(May 11 2020 19:13:04)
 SDK version:3.0.4(9532ceb)
@@ -847,7 +847,7 @@ This is the terminal output when running [HTTPGET](examples/HTTPGET) example on 
 
 ```cpp
 Start HTTPGET on MBED RASPBERRY_PI_PICO
-ESP_AT_Lib v1.5.0
+ESP_AT_Lib v1.5.1
 FW Version:AT version:1.7.4.0(May 11 2020 19:13:04)
 SDK version:3.0.4(9532ceb)
 compile time:May 27 2020 10:12:17

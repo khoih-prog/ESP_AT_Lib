@@ -1,8 +1,8 @@
 /****************************************************************************************************************************
   ESP_AT_Lib.h - Dead simple ESP8266/ESP32-AT-command wrapper
-  For ESP8266/ESP32-AT-command running shields
+  For WizFi360/ESP8266/ESP32-AT-command running shields
 
-  ESP_AT_Lib is a wrapper library for the ESP8266/ESP32 AT-command shields
+  ESP_AT_Lib is a wrapper library for the WizFi360/ESP8266/ESP32 AT-command shields
 
   Based on and modified from ESP8266 https://github.com/esp8266/Arduino/releases
   Built by Khoi Hoang https://github.com/khoih-prog/ESP_AT_Lib
@@ -27,7 +27,7 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 
-  Version: 1.4.1
+  Version: 1.5.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -36,13 +36,17 @@
   1.2.0   K Hoang      17/05/2021 Add support to RP2040-based boards using Arduino-mbed RP2040 core. Fix compiler warnings
   1.3.0   K Hoang      29/05/2021 Add support to RP2040-based Nano_RP2040_Connect using Arduino-mbed RP2040 core
   1.4.0   K Hoang      13/08/2021 Add support to Adafruit nRF52 core v0.22.0+
-  1.4.1   K Hoang      10/10/2021  Update `platform.ini` and `library.json`
+  1.4.1   K Hoang      10/10/2021 Update `platform.ini` and `library.json`
+  1.5.0   K Hoang      19/01/2023 Add support to WizNet WizFi360 such as WIZNET_WIZFI360_EVB_PICO
+  1.5.1   K Hoang      19/01/2023 Fix mistakes
  *****************************************************************************************************************************/
 
 #ifndef __ESP_AT_LIB_H__
 #define __ESP_AT_LIB_H__
 
-#define ESP_AT_LIB_VERSION              "ESP_AT_Lib v1.4.1"
+////////////////////////////////////////
+
+#define ESP_AT_LIB_VERSION              "ESP_AT_Lib v1.5.1"
 
 #ifndef ESP_AT_LIB_DEBUG_OUTPUT
   #define ESP_AT_LIB_DEBUG_OUTPUT       Serial
@@ -52,29 +56,39 @@
   #define ESP_AT_LIB_DEBUG              false
 #endif
 
+////////////////////////////////////////
+
 // Default to use ESP8266-AT
 // _CUR and _DEF only valid for ESP8266-AT
-#ifndef USE_ESP32_AT
+#ifndef USE_ESP32_AT  
   #define USE_ESP32_AT              false
 #endif
 
-#if USE_ESP32_AT
-  #warning Using ESP32 AT command in ESP_AT_Lib
-#else
-  #warning Using ESP8266 AT command in ESP_AT_Lib
+#if (_ESP_AT_LIB_LOGLEVEL_ > 3)
+  #if USE_ESP32_AT
+    #warning Using ESP32 AT command in ESP_AT_Lib
+  #else
+    #warning Using ESP8266 AT command in ESP_AT_Lib
+  #endif
 #endif
+
+////////////////////////////////////////
 
 #include "Arduino.h"
 #include "ESP_AT_Debug.h"
 
+////////////////////////////////////////
+
 #define  DEFAULT_PATTERN  3
+
+////////////////////////////////////////
 
 #if ( defined(ARDUINO_AVR_ADK) || defined(ARDUINO_AVR_MEGA) || defined(ARDUINO_AVR_MEGA2560) )
   #if defined(SERIAL_TX_BUFFER_SIZE)
     #undef SERIAL_TX_BUFFER_SIZE
     #define SERIAL_TX_BUFFER_SIZE     256
   #endif
-
+  
   #if defined(SERIAL_RX_BUFFER_SIZE)
     #undef SERIAL_RX_BUFFER_SIZE
     #define SERIAL_RX_BUFFER_SIZE     256
@@ -84,13 +98,14 @@
     #undef SERIAL_TX_BUFFER_SIZE
     #define SERIAL_TX_BUFFER_SIZE     2048
   #endif
-
+  
   #if defined(SERIAL_RX_BUFFER_SIZE)
     #undef SERIAL_RX_BUFFER_SIZE
     #define SERIAL_RX_BUFFER_SIZE     2048
   #endif
 #endif
 
+////////////////////////////////////////
 
 /**
    Provide an easy-to-use way to manipulate ESP_AT.
@@ -112,22 +127,29 @@ class ESP8266
 
     ESP8266(Stream* uart = &Serial);
 
+    ////////////////////////////////////////
+
     Stream* getUart()
     {
       return m_puart;
     }
 
+    ////////////////////////////////////////
+    
     void changeUart(Stream* uart = &Serial)
     {
       m_puart = uart;
     }
 
+    ////////////////////////////////////////
 
     void setOnData(onData cbk, void* ptr)
     {
       m_onData = cbk;
       m_onDataPtr = ptr;
     }
+
+    ////////////////////////////////////////
 
     void run();
 
@@ -139,7 +161,7 @@ class ESP8266
        @retval true - alive.
        @retval false - dead.
     */
-    bool kick(void);
+    bool kick();
 
     /**
        Restart ESP_AT by "AT+RST".
@@ -149,14 +171,14 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool restart(void);
+    bool restart();
 
     /**
        Get the version of AT Command Set.
 
        @return the string of version.
     */
-    String getVersion(void);
+    String getVersion();
 
     /**
        Start function of deep sleep.
@@ -184,7 +206,7 @@ class ESP8266
          @retval false - failure.
          @note  The operation can lead to restart the machine.
     */
-    bool restore(void);
+    bool restore();
 
     /**
        Set up a serial port configuration.
@@ -213,7 +235,7 @@ class ESP8266
 
        @return the list of model.
     */
-    String getWifiModeList(void);
+    String getWifiModeList();
 
     /**
        Set operation mode to softap.
@@ -253,7 +275,7 @@ class ESP8266
        @note This method will occupy a lot of memeory(hundreds of Bytes to a couple of KBytes).
         Do not call this method unless you must and ensure that your board has enough memery left.
     */
-    String getAPList(void);
+    String getAPList();
 
     /**
        Search and returns the current connect AP.
@@ -281,7 +303,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool leaveAP(void);
+    bool leaveAP();
 
     /**
        Set SoftAP parameters.
@@ -312,7 +334,7 @@ class ESP8266
        @return the list of IP.
        @note This method should not be called when station mode.
     */
-    String getJoinedDeviceIP(void);
+    String getJoinedDeviceIP();
 
     /**
        Get the current state of DHCP.
@@ -427,21 +449,21 @@ class ESP8266
       @retval true - success.
       @retval false - failure.
     */
-    bool stopSmartConfig(void);
+    bool stopSmartConfig();
 
     /**
        Get the current status of connection(UDP and TCP).
 
        @return the status.
     */
-    String getIPStatus(void);
+    String getIPStatus();
 
     /**
        Get the IP address of ESP_AT.
 
        @return the IP list.
     */
-    String getLocalIP(void);
+    String getLocalIP();
 
     /**
        Enable IP MUX(multiple connection mode).
@@ -452,7 +474,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool enableMUX(void);
+    bool enableMUX();
 
     /**
        Disable IP MUX(single connection mode).
@@ -462,7 +484,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool disableMUX(void);
+    bool disableMUX();
 
     /**
        Create TCP connection in single mode.
@@ -480,7 +502,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool releaseTCP(void);
+    bool releaseTCP();
 
     /**
        Register UDP port number in single mode.
@@ -498,7 +520,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool unregisterUDP(void);
+    bool unregisterUDP();
 
     /**
        Create TCP connection in multiple mode.
@@ -560,7 +582,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
 
-       @see String getIPStatus(void);
+       @see String getIPStatus();
        @see uint32_t recv(uint8_t *coming_mux_id, uint8_t *buffer, uint32_t len, uint32_t timeout);
        @see bool releaseTCP(uint8_t mux_id);
     */
@@ -572,7 +594,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool stopTCPServer(void);
+    bool stopTCPServer();
 
     /**
       Set the module transfer mode
@@ -589,7 +611,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
 
-       @see String getIPStatus(void);
+       @see String getIPStatus();
        @see uint32_t recv(uint8_t *coming_mux_id, uint8_t *buffer, uint32_t len, uint32_t timeout);
     */
     bool startServer(uint32_t port = 333);
@@ -612,7 +634,7 @@ class ESP8266
        @retval true - success.
        @retval false - failure.
     */
-    bool stopServer(void);
+    bool stopServer();
     /**
        Save the passthrough links
 
@@ -676,7 +698,7 @@ class ESP8266
     /*
        Empty the buffer or UART RX.
     */
-    void rx_empty(void);
+    void rx_empty();
 
     /*
        Receive data from uart. Return all received data if target found or timeout.
@@ -716,12 +738,12 @@ class ESP8266
     uint32_t checkIPD(String& data);
 
 
-    bool eAT(void);
-    bool eATRST(void);
+    bool eAT();
+    bool eATRST();
     bool eATGMR(String &version);
     bool eATGSLP(uint32_t time);
     bool eATE(uint8_t mode);
-    bool eATRESTORE(void);
+    bool eATRESTORE();
     bool eATSETUART(uint32_t baudrate, uint8_t pattern);
 
     bool qATCWMODE(uint8_t *mode, uint8_t pattern = 3);
@@ -730,7 +752,7 @@ class ESP8266
     bool qATCWJAP(String &ssid, uint8_t pattern = 3) ;
     bool sATCWJAP(String ssid, String pwd, uint8_t pattern = 3);
     bool eATCWLAP(String &list);
-    bool eATCWQAP(void);
+    bool eATCWQAP();
     bool qATCWSAP(String &List, uint8_t pattern = 3);
     bool sATCWSAP(String ssid, String pwd, uint8_t chl, uint8_t ecn, uint8_t pattern = 3);
     bool eATCWLIF(String &list);
@@ -744,7 +766,7 @@ class ESP8266
     bool qATCIPAP(String &ip, uint8_t pattern = 3);
     bool eATCIPAP(String ip, uint8_t pattern = 3);
     bool eCWSTARTSMART(uint8_t type);
-    bool eCWSTOPSMART(void);
+    bool eCWSTOPSMART();
 
 
     bool eATCIPSTATUS(String &list);
@@ -755,7 +777,7 @@ class ESP8266
     bool sATCIPSENDSingleFromFlash(const uint8_t *buffer, uint32_t len);
     bool sATCIPSENDMultipleFromFlash(uint8_t mux_id, const uint8_t *buffer, uint32_t len);
     bool sATCIPCLOSEMultiple(uint8_t mux_id);
-    bool eATCIPCLOSESingle(void);
+    bool eATCIPCLOSESingle();
     bool eATCIFSR(String &list);
     bool sATCIPMUX(uint8_t mode);
     bool sATCIPSERVER(uint8_t mode, uint32_t port = 333);
@@ -774,7 +796,11 @@ class ESP8266
     void*  m_onDataPtr;
 };
 
+////////////////////////////////////////
+
 #include "ESP_AT_Lib_Impl.h"
+
+////////////////////////////////////////
 
 #endif /* #ifndef __ESP_AT_LIB_H__ */
 
