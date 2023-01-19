@@ -231,7 +231,6 @@ This [**ESP_AT_Lib** library](https://github.com/khoih-prog/ESP_AT_Lib) currentl
 
 #### 3. Firmwares tested OK with WizFi360 AT shields
 
-  - [`AT version_2.1.0.0_dev`](https://github.com/khoih-prog/ESP8266_AT_WebServer/blob/master/AT_Firmwares/AT_version_2.1.0.0_dev.zip)
     
     ```cpp
     FW Version:AT version:1.1.1.7(May  4 2021 15:14:59)
